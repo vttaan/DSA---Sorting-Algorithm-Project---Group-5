@@ -1,10 +1,5 @@
 #pragma once
-
-void command1();
-void command2();
-void command3();
-void command4();
-void command5();
+#include <string>
 
 
-void selectionSort(int a[], int n);
+void RunAlgorithmSort(const std::string& algorithm, int*& a, int dataSize, long long& comparisonsCount, float& runningTime);

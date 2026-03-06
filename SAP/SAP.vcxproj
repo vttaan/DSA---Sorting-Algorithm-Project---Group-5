@@ -123,10 +123,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Add_In.cpp" />
+    <ClCompile Include="AlgorithmMode.cpp" />
+    <ClCompile Include="ComparisonMode.cpp" />
+    <ClCompile Include="DataGenerator.cpp" />
     <ClCompile Include="functionsProgram.cpp" />
     <ClCompile Include="mainProgram.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Add_In.h" />
+    <ClInclude Include="AlgorithmMode.h" />
+    <ClInclude Include="Comparisions.h" />
+    <ClInclude Include="DataGenerator.h" />
     <ClInclude Include="functions.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
