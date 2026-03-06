@@ -1,0 +1,2 @@
+﻿  main.cpp
+D:\25127227_\Project1\main.cpp(5,1): error C4700: uninitialized local variable 'ptr' used
