@@ -10,6 +10,8 @@ void insertionSort(int a[], int n, long long& comparisonsCount);
 void binaryInsertionSort(int a[], int n, long long& comparisonsCount);
 
 void bubbleSort(int a[], int n, long long& comparisonsCount);
+void shellSortKnuth(int a[], int n, long long& comparisonsCount);
+void shakerSort(int a[], int n, long long& comparisonsCount);
 
 void heapSort(int arr[], int n, long long& comparisonsCount);
 void mergeSort(int arr[], int left, int right, long long& comparisonsCount);

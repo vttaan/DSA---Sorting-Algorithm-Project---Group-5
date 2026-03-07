@@ -62,15 +62,15 @@ void GenerateData(int a[], int n, int dataType)
 	{
 	case 0:	// random
 		GenerateRandomData(a, n);
+		break;	
+	case 1:	// nearly sorted
+		GenerateNearlySortedData(a, n);
 		break;
-	case 1:	// sorted
+	case 2:	// sorted
 		GenerateSortedData(a, n);
 		break;
-	case 2:	// reverse sorted
+	case 3:	// reverse sorted
 		GenerateReverseData(a, n);
-		break;
-	case 3:	// nearly sorted
-		GenerateNearlySortedData(a, n);
 		break;
 	default:
 		printf("Error: unknown data type!\n");

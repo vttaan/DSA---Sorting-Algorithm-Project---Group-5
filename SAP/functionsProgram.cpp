@@ -10,7 +10,7 @@ void RunAlgorithmSort(const string& algorithm, int*& a, int dataSize, long long&
 
 	if (algorithm == "selection-sort") selectionSort(a, dataSize, comparisonsCount); // func sort
 	else if (algorithm == "insertion-sort") insertionSort(a, dataSize, comparisonsCount); // func sort
-	else if (algorithm == "shell-sort"); // func sort
+	else if (algorithm == "shell-sort") shellSortKnuth(a, dataSize, comparisonsCount);
 	else if (algorithm == "bubble-sort") bubbleSort(a, dataSize, comparisonsCount); // func sort
 	else if (algorithm == "heap-sort") heapSort(a, dataSize, comparisonsCount); // func sort
 	else if (algorithm == "merge-sort") mergeSort(a, 0, dataSize - 1, comparisonsCount); // func sort
@@ -18,7 +18,7 @@ void RunAlgorithmSort(const string& algorithm, int*& a, int dataSize, long long&
 	else if (algorithm == "radix-sort") radixSort(a, dataSize, comparisonsCount); // func sort
 	else if (algorithm == "counting-sort") countingSort(a, dataSize, comparisonsCount); // func sort
 	else if (algorithm == "binary insertion-sort") binaryInsertionSort(a, dataSize, comparisonsCount); // func sort
-	else if (algorithm == "shaker-sort"); // func sort
+	else if (algorithm == "shaker-sort") shakerSort(a, dataSize, comparisonsCount); // func sort
 	else if (algorithm == "flash-sort") flashSort(a, dataSize, comparisonsCount); // func sort
 
 	auto end = std::chrono::high_resolution_clock::now();
@@ -60,13 +60,18 @@ void insertionSort(int a[], int n, long long& comparisonsCount)
 	for (int j = 1; j < n; j++)
 	{
 		comparisonsCount++;
+		int isSwap = 0;
 		for (int i = j; i > 0; i--)
 		{
 			comparisonsCount++;
-			if (a[i] > a[i - 1]) swap(a[i], a[i - 1]);
+			if (a[i] > a[i - 1]) {
+				swap(a[i], a[i - 1]);
+				isSwap = 1;
+			}
 			comparisonsCount++;
 		}
 		comparisonsCount++;
+		if (isSwap == 0) break;
 	}
 	comparisonsCount++;
 
@@ -130,6 +135,57 @@ void bubbleSort(int a[], int n, long long& comparisonsCount) {
 		if (flag == 0) break;
 	}
 }
+
+void shellSortKnuth(int a[], int n, long long& comparisonsCount) {
+	comparisonsCount = 0;
+	int gap = 1;
+	while (gap < n / 3 && ++comparisonsCount) {
+		gap = 3 * gap + 1;
+	}
+
+	while (gap > 0 && ++comparisonsCount) {
+		for (int i = gap; ++comparisonsCount, i < n; i++) {
+			int j = i;
+			while (j >= gap && ++comparisonsCount && a[j - gap] > a[j] && ++comparisonsCount) {
+				swap(a[j - 1], a[j]);
+				j -= gap;
+			}
+		}
+		gap /= 3;
+	}
+}
+
+void shakerSort(int a[], int n, long long& comparisonsCount) {
+	comparisonsCount = 0;
+	int start = 0;
+	int end = n - 1;
+	int lastPos = 0;
+
+	while (start < end && ++comparisonsCount) {
+		int isSwap = 0;
+		for (int i = start + 1; ++comparisonsCount, i <= end; i++) {
+			if (a[i - 1] > a[i] && ++comparisonsCount) {
+				swap(a[i], a[i - 1]);
+				isSwap = 1;
+				lastPos = i;
+			}
+		}
+		if (isSwap == 0 && ++comparisonsCount) break;
+
+		end = lastPos;
+		isSwap = 0;
+		for (int i = end; ++comparisonsCount, i > start; i--) {
+			if (a[i - 1] > a[i] && ++comparisonsCount) {
+				isSwap = 1;
+				swap(a[i - 1], a[i]);
+				lastPos = i;
+			}
+		}
+		if (isSwap == 0) break;
+		start = lastPos + 1;
+	}
+}
+
 //
 
 
