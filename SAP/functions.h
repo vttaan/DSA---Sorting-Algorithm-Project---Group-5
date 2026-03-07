@@ -20,3 +20,6 @@ void quickSort(int arr[], int low, int high, long long& comparisonsCount);
 void countingSort(int a[], int n, long long& count_compare);
 void radixSort(int a[], int n, long long& comparisonsCount);
 void flashSort(int a[], int n, long long& comparisonsCount);
+
+// function supporting for quick-sort
+int partition(int arr[], int low, int high);

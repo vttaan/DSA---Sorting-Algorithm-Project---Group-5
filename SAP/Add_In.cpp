@@ -57,6 +57,8 @@ int findDataType(const string& orderData) {
 	if (orderData == "-nsorted") return 1;
 	if (orderData == "-sorted") return 2;
 	if (orderData == "-rev") return 3;
+
+	return -1;
 }
 
 int findOutputOrder(const string& outputOrder) {

@@ -231,18 +231,18 @@ void heapSort(int arr[], int n, long long& comparisonsCount) {
 
 }
 
-const int max_len = 3e5;
+const int max_len = 5e6;
 int L[max_len], R[max_len];
 
 void merge(int arr[], int left, int right, int mid, long long& comparisonsCount) {
 	int n1 = mid - left + 1;
 	int n2 = right - mid;
 
-	for (int i = 0; i < n1; ++comparisonsCount, ++i) {
+	for (int i = 0; ++comparisonsCount && i < n1; ++i) {
 		L[i] = arr[left + i];
 	}
 
-	for (int j = 0; j < n2; ++comparisonsCount, ++j) {
+	for (int j = 0; ++comparisonsCount && j < n2;  ++j) {
 		R[j] = arr[mid + 1 + j];
 	}
 
@@ -292,38 +292,42 @@ void mergeSort(int arr[], int left, int right, long long& comparisonsCount) {
 
 }
 
-int partition(int arr[], int low, int high, long long& comparisonsCount) {
+int partition(int arr[], int low, int high) {
 
+	int mid = low + (high - low) / 2;
+	if (arr[mid] < arr[low]) swap(arr[mid], arr[low]);
+	if (arr[high] < arr[low]) swap(arr[high], arr[low]);
+	if (arr[high] < arr[mid]) swap(arr[high], arr[mid]);
 
+	swap(arr[mid], arr[high]);
 	int pivot = arr[high];
-
 	int i = low - 1;
 
-
-	for (int j = low; j <= high - 1; ++comparisonsCount, j++) {
-		if (++comparisonsCount && arr[j] < pivot) {
+	for (int j = low; j <= high - 1; j++) {
+		if (arr[j] <= pivot) {
 			i++;
 			swap(arr[i], arr[j]);
 		}
 	}
-
 	swap(arr[i + 1], arr[high]);
-	return i + 1;
+	return (i + 1);
 }
 
 void quickSort(int arr[], int low, int high, long long& comparisonsCount) {
+	while (++comparisonsCount && low < high) {
+		int pi = partition(arr, low, high);
 
-	if (++comparisonsCount && low < high) {
-
-
-		int pi = partition(arr, low, high, comparisonsCount);
-
-
-		quickSort(arr, low, pi - 1, comparisonsCount);
-		quickSort(arr, pi + 1, high, comparisonsCount);
+		if (++comparisonsCount && (pi - low < high - pi)) {
+			quickSort(arr, low, pi - 1, comparisonsCount);
+			low = pi + 1;
+		}
+		else {
+			quickSort(arr, pi + 1, high, comparisonsCount);
+			high = pi - 1;
+		}
 	}
-
 }
+
 
 //
 
