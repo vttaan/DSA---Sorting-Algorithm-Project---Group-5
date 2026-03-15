@@ -4,6 +4,7 @@
 #include <string>
 #include <vector>
 
+#include "AddIn.h"
 #include "DataGenerator.h"
 #include "functions.h"
 #include "AlgorithmMode.h"
