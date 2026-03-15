@@ -7,7 +7,7 @@
 
 #include "DataGenerator.h"
 #include "functions.h"
-#include "Add_In.h"
+#include "AddIn.h"
 
 using namespace std;
 
